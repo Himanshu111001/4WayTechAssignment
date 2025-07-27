@@ -34,7 +34,7 @@ const Navbar = () => {
             <Link
               to="/login"
               className="px-4 py-2 lg:px-6 lg:py-3 rounded-md text-sm lg:text-base font-medium transition-all duration-200 text-black hover:opacity-80"
-              style={{ backgroundColor: 'rgb(255, 252, 84)' }}
+              style={{ backgroundColor: "rgb(255, 252, 84)" }}
             >
               Login
             </Link>
