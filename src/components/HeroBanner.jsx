@@ -1,14 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useModal } from "../contexts/ModalContext";
 import bannerImage from "../assets/banner.png";
 import Navbar from "./Navbar";
 
 const HeroBanner = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, user } = useAuth();
+  const { openSignup } = useModal();
 
   const handleGetStarted = () => {
-    // You can customize this action - navigate to signup, scroll to content, etc.
-    navigate("/signup");
+    if (isAuthenticated) {
+      // If user is already logged in, you can navigate to a dashboard or main app
+      navigate("/dashboard"); // You can create this route or change to any desired action
+    } else {
+      // Show signup modal for non-authenticated users
+      openSignup();
+    }
   };
 
   return (
@@ -58,7 +67,11 @@ const HeroBanner = () => {
             className="group relative inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-semibold text-black transition-all duration-300 ease-out rounded-lg shadow-2xl hover:scale-105 transform focus:outline-none focus:ring-4 focus:ring-yellow-500/50 hover:opacity-80"
             style={{ backgroundColor: "rgb(255, 252, 84)" }}
           >
-            <span className="relative z-10">Start Chatting Now</span>
+            <span className="relative z-10">
+              {isAuthenticated
+                ? `Welcome back, ${user?.firstName}!`
+                : "Start Chatting Now"}
+            </span>
 
             {/* Arrow Icon */}
             <svg

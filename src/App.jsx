@@ -1,14 +1,19 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ModalProvider } from "./contexts/ModalContext";
 import Routes from "./routes/Routes";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-100">
-        <Routes />
-      </div>
+      <AuthProvider>
+        <ModalProvider>
+          <div className="min-h-screen bg-gray-100">
+            <Routes />
+          </div>
+        </ModalProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 };

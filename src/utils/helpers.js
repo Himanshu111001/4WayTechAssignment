@@ -29,6 +29,56 @@ export const debounce = (func, wait) => {
   }
 }
 
+// Authentication helpers
+export const authHelpers = {
+  // Check if user is authenticated
+  isAuthenticated: () => {
+    return localStorage.getItem('authToken') !== null
+  },
+
+  // Get current user data
+  getCurrentUser: () => {
+    try {
+      const userData = localStorage.getItem('userData')
+      return userData ? JSON.parse(userData) : null
+    } catch (error) {
+      console.error('Error parsing user data:', error)
+      return null
+    }
+  },
+
+  // Clear authentication data
+  clearAuth: () => {
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('userData')
+  },
+
+  // Validate password strength
+  validatePassword: (password) => {
+    const errors = []
+    if (password.length < 6) {
+      errors.push('Password must be at least 6 characters long')
+    }
+    if (!/(?=.*[a-z])/.test(password)) {
+      errors.push('Password must contain at least one lowercase letter')
+    }
+    if (!/(?=.*[A-Z])/.test(password)) {
+      errors.push('Password must contain at least one uppercase letter')
+    }
+    if (!/(?=.*\d)/.test(password)) {
+      errors.push('Password must contain at least one number')
+    }
+    return errors
+  },
+
+  // Format authentication error messages
+  formatAuthError: (error) => {
+    if (typeof error === 'string') return error
+    if (error?.message) return error.message
+    return 'An unexpected error occurred'
+  }
+}
+
 // Format date to readable string
 export const formatDate = (date) => {
   return new Intl.DateTimeFormat('en-US', {
