@@ -86,17 +86,6 @@ const LoginModal = ({ isOpen, onClose, onSwitchToSignup }) => {
               alt="Login"
               className="w-full h-64 lg:h-full object-cover rounded-t-2xl lg:rounded-l-2xl lg:rounded-t-none"
             />
-            <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-blue-600/80 to-purple-600/80 rounded-t-2xl lg:rounded-l-2xl lg:rounded-t-none" />
-            <div className="absolute inset-0 flex items-center justify-center text-white p-8">
-              <div className="text-center">
-                <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-                  Welcome Back!
-                </h3>
-                <p className="text-white/90 text-lg">
-                  Sign in to continue your journey with us
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Right Section - Form */}

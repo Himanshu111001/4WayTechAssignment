@@ -44,7 +44,10 @@ const HeroBanner = () => {
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 drop-shadow-2xl">
             Real Emotions,
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-2xl">
+            <span
+              className="block drop-shadow-2xl"
+              style={{ color: "rgb(255, 252, 84)" }}
+            >
               Real Connections
             </span>
           </h1>
