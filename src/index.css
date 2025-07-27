@@ -1,5 +1,98 @@
 @import "tailwindcss";
 
+/* Carousel sliding animations - Hardware accelerated for smooth performance */
+.carousel-slide-container {
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden; /* Prevent flickering on some devices */
+}
+
+.carousel-slide {
+  transform: translateZ(0); /* Force hardware acceleration for individual slides */
+  backface-visibility: hidden;
+  flex-shrink: 0;
+}
+
+/* Hero carousel specific styles */
+.hero-carousel .carousel-slide {
+  min-width: 100vw;
+  width: 100vw;
+}
+
+/* Content carousel specific styles */
+.content-carousel .carousel-slide {
+  min-width: 100%;
+  width: 100%;
+}
+
+/* Optimized transition for carousel slides with cubic-bezier for natural feel */
+.carousel-transition {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateZ(0);
+  display: flex;
+}
+
+/* Prevent transition on initial load */
+.carousel-transition.no-transition {
+  transition: none;
+}
+
+/* Enhanced navigation dots with subtle animations and better accessibility */
+.nav-dot {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateZ(0);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-dot:hover {
+  transform: scale(1.25) translateZ(0);
+}
+
+.nav-dot-active {
+  transform: scale(1.1) translateZ(0);
+  box-shadow: 0 0 12px rgba(255, 252, 84, 0.4);
+}
+
+/* Add subtle pulse animation for active dots */
+.nav-dot-active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Smooth image loading transitions */
+.image-fade-in {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Performance optimizations for smooth scrolling and animations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Disable hover effects on touch devices to improve performance */
+@media (hover: none) and (pointer: coarse) {
+  .nav-dot:hover {
+    transform: translateZ(0);
+  }
+}
+
 /* Modal animations */
 .modal-overlay {
   animation: fadeIn 0.3s ease-out;
