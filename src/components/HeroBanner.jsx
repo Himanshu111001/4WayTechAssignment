@@ -149,6 +149,32 @@ const HeroBanner = () => {
           </button>
         </div>
       </div>
+
+      {/* Black Strip with Marquee Text */}
+      <div className="absolute bottom-0 left-0 w-full h-10 bg-black z-20 overflow-hidden">
+        <div className="flex items-center h-full">
+          <div className="marquee-container">
+            <div className="marquee-text text-lg font-medium">
+              <span>
+                Sign up now and get 5 points for free. App available on iOS and
+                Android
+              </span>
+              <span>
+                Sign up now and get 5 points for free. App available on iOS and
+                Android
+              </span>
+              <span>
+                Sign up now and get 5 points for free. App available on iOS and
+                Android
+              </span>
+              <span>
+                Sign up now and get 5 points for free. App available on iOS and
+                Android
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

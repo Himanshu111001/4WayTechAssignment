@@ -217,3 +217,33 @@
 .animate-spin {
   animation: spin 1s linear infinite;
 }
+
+/* Marquee Animation for Black Strip */
+.marquee-container {
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.marquee-text {
+  display: inline-flex;
+  color: rgb(255, 252, 84); /* Same color as login button */
+  animation: marquee 30s linear infinite;
+  min-width: 100%;
+}
+
+.marquee-text span {
+  display: inline-block;
+  padding-right: 4rem; /* Space between repetitions */
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
