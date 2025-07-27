@@ -130,11 +130,15 @@ const CarouselSection = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 ${
                 index === currentSlide
-                  ? "bg-blue-600 shadow-lg"
+                  ? "shadow-lg"
                   : "bg-gray-300 hover:bg-gray-400"
               }`}
+              style={{
+                backgroundColor:
+                  index === currentSlide ? "rgb(255, 252, 84)" : undefined,
+              }}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
