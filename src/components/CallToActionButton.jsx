@@ -6,6 +6,7 @@ import { useModal } from "../contexts/ModalContext";
 const CallToActionButton = ({
   children = "Get Started",
   className = "",
+  style = {},
   authenticatedText = "Continue",
   authenticatedAction = null, // Custom action for authenticated users
 }) => {
@@ -28,7 +29,8 @@ const CallToActionButton = ({
   return (
     <button
       onClick={handleClick}
-      className={`inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 ${className}`}
+      style={style}
+      className={`inline-flex items-center justify-center px-6 py-3 text-base font-medium text-black border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-colors duration-200 ${className}`}
     >
       {isAuthenticated ? authenticatedText : children}
     </button>
