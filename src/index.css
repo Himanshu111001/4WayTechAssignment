@@ -3,6 +3,8 @@
 /* Modal animations */
 .modal-overlay {
   animation: fadeIn 0.3s ease-out;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .modal-content {
@@ -12,9 +14,13 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
   }
   to {
     opacity: 1;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 }
 
@@ -27,6 +33,15 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Enhanced modal styles */
+.modal-overlay {
+  transition: all 0.3s ease-out;
+}
+
+.modal-content {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 /* Custom scrollbar for modals */
@@ -46,4 +61,18 @@
 
 .modal-content::-webkit-scrollbar-thumb:hover {
   background: #a1a1a1;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
