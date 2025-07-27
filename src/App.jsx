@@ -9,7 +9,7 @@ const App = () => {
     <BrowserRouter>
       <AuthProvider>
         <ModalProvider>
-          <div className="min-h-screen bg-gray-100">
+          <div className="min-h-screen bg-black">
             <Routes />
           </div>
         </ModalProvider>
