@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useModal } from "../contexts/ModalContext";
-import bannerImage from "../assets/banner.png";
+import bannerImage from "../assets/banner.png"; // Fallback image
 import Navbar from "./Navbar";
 
 const HeroBanner = () => {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useAuth();
   const { openSignup } = useModal();
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef(null);
+
+  // Handle video load success
+  const handleVideoLoad = () => {
+    setVideoLoaded(true);
+    setVideoError(false);
+  };
+
+  // Handle video load error with fallback
+  const handleVideoError = () => {
+    setVideoError(true);
+    setVideoLoaded(false);
+    console.warn("Hero video failed to load, falling back to image");
+  };
+
+  // Ensure video plays when component mounts (for some browsers)
+  useEffect(() => {
+    if (videoRef.current && videoLoaded && !videoError) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.warn("Autoplay was prevented:", error);
+          // Video autoplay was prevented, but that's okay
+        });
+      }
+    }
+  }, [videoLoaded, videoError]);
 
   const handleGetStarted = () => {
     if (isAuthenticated) {
@@ -22,16 +51,43 @@ const HeroBanner = () => {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Background Image */}
+      {/* Background Video - Only render if no error occurred */}
+      {!videoError && (
+        <video
+          ref={videoRef}
+          className="hero-video absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={bannerImage}
+          onLoadedData={handleVideoLoad}
+          onError={handleVideoError}
+          onCanPlay={() => setVideoLoaded(true)}
+          data-loaded={videoLoaded}
+          aria-hidden="true"
+        >
+          <source src="/opening.m4v" type="video/mp4" />
+          {/* Fallback text for browsers that don't support video */}
+          Your browser does not support the video tag.
+        </video>
+      )}
+
+      {/* Fallback Background Image - Shown if video fails or is loading */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className={`hero-video-fallback absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
+          videoError || !videoLoaded ? "opacity-100" : "opacity-0"
+        }`}
         style={{
           backgroundImage: `url(${bannerImage})`,
         }}
+        role="img"
+        aria-label="Hero banner background"
       />
 
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/30 z-[1]" />
 
       {/* Transparent Navbar Overlay */}
       <div className="absolute top-0 left-0 right-0 z-20">
