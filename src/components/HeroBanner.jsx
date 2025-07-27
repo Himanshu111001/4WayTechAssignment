@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "../assets/banner.png";
+import Navbar from "./Navbar";
 
 const HeroBanner = () => {
   const navigate = useNavigate();
@@ -23,19 +24,24 @@ const HeroBanner = () => {
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/30" />
 
+      {/* Transparent Navbar Overlay */}
+      <div className="absolute top-0 left-0 right-0 z-20">
+        <Navbar />
+      </div>
+
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
         <div className="text-center text-white max-w-4xl mx-auto">
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 sm:mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 sm:mb-6 drop-shadow-2xl">
             Welcome to the
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-2xl">
               Future
             </span>
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg sm:text-xl md:text-2xl font-light text-gray-200 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl font-light text-gray-200 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
             Experience innovation like never before with our cutting-edge
             platform designed to transform your digital journey.
           </p>

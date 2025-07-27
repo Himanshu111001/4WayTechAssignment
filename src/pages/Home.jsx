@@ -1,17 +1,11 @@
 import React from "react";
 import HeroBanner from "../components/HeroBanner";
-import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <div>
-      {/* Hero Banner - Full viewport */}
+      {/* Hero Banner with integrated transparent Navbar overlay */}
       <HeroBanner />
-
-      {/* Navigation - Fixed overlay */}
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <Navbar />
-      </div>
 
       {/* Main Content Section */}
       <div className="min-h-screen bg-gray-100">
